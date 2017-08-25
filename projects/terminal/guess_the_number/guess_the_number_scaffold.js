@@ -31,14 +31,13 @@ function getRandomNumber (min, max) {
  * @function Game
  * @param  {Number} number {the number to guess}
  * @param  {Number} triesLeft {number of attempts }
- * @param  {Boolean} gameOver
+ * @param  {Boolean} win
  * @param  {String} message
  * @return {Game} a new Game object
  */
-function Game (number, guessList, triesLeft, gameOver, message) {
+function Game (number, triesLeft, gameOver, message) {
   var game = {
     number: number,
-    guessList: guessList,
     triesLeft: triesLeft,
     gameOver: gameOver,
     message: message
@@ -55,15 +54,12 @@ function Game (number, guessList, triesLeft, gameOver, message) {
 function updateGame (game, guess) {
   var number = game.number
   var triesLeft = game.triesLeft - 1
-  var message
+  var message = ''
   var gameOver
-  
+
   if (guess === number) {
     gameOver = true
     message = 'You win!'
-  } else if (triesLeft === 0){
-    gameOver = true
-    message = 'You lose! The Number was: ' + number
   } else if (guess < number) {
     gameOver = false
     message = 'Aim higher'
@@ -72,28 +68,20 @@ function updateGame (game, guess) {
     message = 'Aim lower'
   }
   
-  var guessList = game.guessList.concat(guess)
-  var updatedGame = Game(number, guessList, triesLeft, gameOver, message)
+  var updatedGame = Game(number, triesLeft, gameOver, message)
   return updatedGame
 }
 
 rl.on('line', function (input) {
-  clear()
   var guess = Number(input)
   
-  if (isNaN(guess)){
-    console.log('insert numbers only!')
-  } else {
-    game = updateGame(game, guess)
-    console.log(game.message)
+  game = updateGame(game, guess)
+  console.log(game.message)
 
-    if (game.gameOver){
-      process.exit()
-    } else {
-      console.log('guesses: ', game.guessList)
-      console.log('tries left: ', game.triesLeft)
-      console.log('enter your guess')
-    }
+  if (game.gameOver){
+    process.exit()
+  } else {
+    console.log('enter your guess')
   }
 });
 
@@ -101,12 +89,11 @@ rl.on('line', function (input) {
 var game
 
 function startGame(){
-  var number = getRandomNumber(1, 10)
-  var guessList = []
-  var tries = 3
+  var gameNumber = getRandomNumber(1, 10)
+  var tries = 10
   var gameOver = false
   var message = ''
-  game = Game(number, guessList, tries, gameOver, message)
+  game = Game(gameNumber, tries, gameOver, message)
 
   console.log('enter a number')
 }

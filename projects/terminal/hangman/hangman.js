@@ -1,52 +1,77 @@
-var readline = require('readline')
 
-var words = ['explain', 'truck', 'neat', 'united', 'branch', 'education', 'decision', 'notice']
-var guesses = 6
-var BLANK_SPACE = '_'
+
 /*
- *   the following will be given to the students,
- *   and they are not required to understand it
+ *   the following is boilerplate code that is given to the students
  */
+var readline = require('readline')
 
 var rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
 })
 
-console.clear = function () {
-  return process.stdout.write('\x1B[2J\x1B[0f')
+function clear() {
+  process.stdout.write('\u001B[2J\u001B[0;0f')
 }
 
-/*
- *  the following will be given to the students,
- *  and it is recommended that they understand it
+// End Of Boilerplate
+
+var words = ['explain', 'truck', 'neat', 'united', 'branch', 'education', 'decision', 'notice']
+
+/**
+ * @function getRandomNumber
+ * @param  {Number} min 
+ * @param  {Number} max {description}
+ * @return {Number} {returns a random number between min and max}
  */
 function getRandomNumber (min, max) {
   return Math.floor((Math.random() * (max - min)) + min)
 }
 
-function getRandomElement (arr) {
+function getRandomWord () {
   var randomIndex = getRandomNumber(0, words.length - 1)
-  return arr[randomIndex]
+  return words[randomIndex]
 }
 
-function generateBlankWord (word) {
-  var underlines = ''
-  for (var i = 0; i < word.length; i++) {
-    underlines += BLANK_SPACE
-  }
-  return underlines
-}
-
-/*
- *  the following may be partially given to the students
- *  (body-less function definitions, etc.)
+/**
+ * @function makeBlankWord
+ * @param  {Number} length
+ * @return {String} {A string of underscores of the desired length}
  */
-function replaceBlanks (word, userWord, letterStr) {
+function makeBlankWord (length) {
+  var underline = '_'
+  return underline.repeat(length)
+}
+
+
+/**
+ * @function Game
+ * @param  {string} gameWord {description}
+ * @param  {string} userWord {description}
+ * @return {Game} {a game object}
+ */
+function Game(gameWord, userWord){
+  var game =  {
+    gameWord: gameWord,
+    userWord: userWord
+  }
+
+  return game
+}
+
+
+/**
+ * @function updateUserWord
+ * @param  {Game} game 
+ * @param  {String} letter
+ * @return {String} {the up}
+ */
+function updateUserWord (gameWord, userWord, letter) {
   var updatedUserWord = ''
+
   for (var i = 0; i < userWord.length; i++) {
-    if (word[i] === letterStr[0]) {
-      updatedUserWord += word[i]
+    if (gameWord[i] === letter[0]) {
+      updatedUserWord += gameWord[i]
     } else {
       updatedUserWord += userWord[i]
     }
@@ -54,22 +79,51 @@ function replaceBlanks (word, userWord, letterStr) {
   return updatedUserWord
 }
 
-function play (word, userWord) {
-  console.log(userWord)
-  rl.question('enter a letter ', function (letterStr) {
-    console.clear()
+/**
+ * @function updateGame
+ * @param  {Game} game 
+ * @param  {string} letter 
+ * @return {Game}
+ */
+function updateGame(game, letter) {
+  var gameWord = game.gameWord
+  var userWord = game.userWord
 
-    if (letterStr.length !== 1) {
-      console.log('insert one letter at a time!')
-      play(word, userWord)
-    } else {
-      userWord = replaceBlanks(word, userWord, letterStr)
-      play(word, userWord)
-    }
-  })
+  var updatedUserWord = updateUserWord(gameWord, userWord, letter)
+  var updatedGame = Game(gameWord, updatedUserWord)
+  return updatedGame
 }
 
-var word = getRandomElement(words)
-var blankWord = generateBlankWord(word)
-console.clear()
-play(word, blankWord)
+
+
+rl.on('line', function (input) {
+  clear()
+
+  if (input.length !== 1) {
+    console.log('insert one letter at a time!')
+  } else {
+    // update the game with the new letter
+    game = updateGame(game, input)
+
+    console.log(game.userWord)
+    
+    // The user wins if the user's word is the same as the game word
+    if (game.userWord === game.gameWord){
+      console.log('you win!')
+      process.exit()
+    } else {
+      console.log('insert a letter: ')
+    }
+  }
+})
+
+var game
+
+function startGame(){
+  var gameWord = getRandomWord()
+  var userWord = makeBlankWord(gameWord.length)
+  game = Game(gameWord, userWord)
+  console.log('insert a letter')
+}
+
+startGame()
