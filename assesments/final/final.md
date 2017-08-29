@@ -60,7 +60,7 @@ arrContains([1,2,3,4], 'dog')
 
 ```js
 replaceSpacesWithCommas('hello there stranger')
-// returns ['hello,there,stranger']
+// returns 'hello,there,stranger'
 ```
 
 8. Fill in the blank:
