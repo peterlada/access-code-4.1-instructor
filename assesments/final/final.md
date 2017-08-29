@@ -89,7 +89,7 @@ function forEachElem(arr, callback){
 }
 ```
 
-Complete the following code using `forEachElem`:
+Complete the following code:
 
 ```js
 arr = [3, 4, 5]
