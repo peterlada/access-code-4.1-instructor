@@ -74,7 +74,7 @@ function callWithArg(callback, arg) {
   ____________
 }
 
-callWithArg(callback, arg)
+callWithArg(exclaim, 'hello')
 // returns 'hello!'
 ```
 
