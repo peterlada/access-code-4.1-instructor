@@ -18,20 +18,20 @@ var num2
 
 rl.on('line', function (input) {
   clear()
-  if (input === ''){
-    console.log('you must enter something')
-  } else{
-    var numInput = Number(input)
-    if (isNaN(numInput)){
-      console.log('try again')
-    } else if (num1 === undefined){
-      num1 = numInput
-      console.log('input second number')
-    } else{
-      num2 = numInput
-      var sum = num1 + num2
-      console.log('The sum is: ' + sum)
-    }
+  
+  var numInput = Number(input)
+
+  if (isNaN(numInput)){
+    console.log('enter a valid number')
+  } else if (num1 === undefined){
+    num1 = numInput
+    console.log('input second number')
+  } else if (num2 === undefined) {
+    num2 = numInput
+    var sum = num1 + num2
+    console.log('The sum is: ' + sum)
+  } else {
+    console.log("we're done here")
   }
 })
   
