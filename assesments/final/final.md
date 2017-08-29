@@ -70,11 +70,11 @@ function exclaim(str) {
   return str + "!"
 }
 
-function callFunc(arg, callback) {
+function callWithArg(callback, arg) {
   ____________
 }
 
-apply("hello", exclaim)
+callWithArg(callback, arg)
 // returns 'hello!'
 ```
 
