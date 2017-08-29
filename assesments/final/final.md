@@ -45,7 +45,7 @@ updateCounter(10, 'hello')
 // will return 0
 ```
 
-6. Write a function called `arrContains` that takes two arguments: an array, and a value to search for within that array. The function will return `true` if the element is in the array, and `false` otherwise. You may not use any built-in array methods.
+6. Write a function called `arrContains` that takes two arguments: an array and a value. The function will return `true` if the value is in the array, and `false` otherwise. You may not use any built-in array methods.
 
 Examples:
 
