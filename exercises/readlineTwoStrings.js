@@ -12,19 +12,15 @@ function clear () {
 // var num1
 // var num2
 
-var str1
-var str2
+var str1 = ''
+var str2 = ''
 
 rl.on('line', function (input) {
   clear()
-  // if (num1 === undefined){
-  //   num1 = Number(input)
-  //   if (isNaN(num1) === )
-  // }
   if (input === ''){
     console.log('you must enter something')
   } else{
-    if (!str1){
+    if (str1 === ''){
       str1 = input
       console.log('enter second string')
     } else {
