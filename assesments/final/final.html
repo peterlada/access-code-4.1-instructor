@@ -1,0 +1,155 @@
+<h1 id="finalassessment">Final Assessment</h1>
+
+
+<p>Write a function <code>sumTimesTwo</code> that takes two numbers as arguments and returns the sum of these numbers multiplied by <code>2</code>.</p>
+
+<p>Write a function <code>product</code> that takes two numbers as arguments and returns their product. If either of the arguments is not of type number, the function should return <code>invalid input</code></p>
+
+
+<pre><code class="js language-js">product(1, 2)
+// returns 2
+product(3, 'dog')
+// returns 'invalid input'
+</code></pre>
+
+
+Write a function <code>capEvenLowOdd</code> that takes a string as input. If the string has an even number of letters the function will return the string in all uppercase letters. If the string has an odd number of letters the function will return the string in all lowercase letters.
+
+
+<pre><code class="js language-js">capEvenLowOdd('DOG')
+// returns 'dog'
+capEvenLowOdd('woof')
+// returns 'WOOF'
+</code></pre>
+
+
+The <code>Math.pow</code> function takes two numbers as arguments, and returns the first to the power of the second. For example,
+
+
+<pre><code class="js language-js">Math.pow(3, 2)
+// returns 9
+</code></pre>
+
+<p>Create a function called <code>cube</code> that takes a number as argumemt and uses the <code>Math.pow</code> function to return that number to the power of <code>3</code>.</p>
+
+<pre><code class="js language-js">cube(3)
+// returns 27
+</code></pre>
+
+
+Write a function <code>updateCounter</code> that takes as arguments a number <code>counter</code> and a string <code>action</code>. If the string's value is <code>'INC'</code> the function will return the  value of the counter plus 1. If the string's value is <code>'DEC'</code>, the function will return the value of the counter minus 1. If the string's value is neither of these, the function will return <code>0</code>.
+
+
+<pre><code class="js language-js">updateCounter(1, 'INC')
+// will return 2
+updateCounter(4, 'DEC')
+// will return 3
+updateCounter(10, 'hello')
+// will return 0
+</code></pre>
+
+
+Write a function called <code>arrContains</code> that takes two arguments: an array and a value. The function will return <code>true</code> if the value is in the array, and <code>false</code> otherwise. You may not use any built-in array methods.
+
+
+<p>Examples:</p>
+
+<pre><code class="js language-js">arrContains([1,2,3,4], 2)
+// returns true
+arrContains([1,2,3,4], 'dog')
+// returns false
+</code></pre>
+
+
+Write a function <code>replaceSpacesWithCommas</code> that takes a string as an argument, and returns the string with all the spaces replaces by commas.
+
+
+<pre><code class="js language-js">replaceSpacesWithCommas('hello there stranger')
+// returns 'hello,there,stranger'
+</code></pre>
+
+
+Fill in the blank:
+
+
+<pre><code class="js language-js">function exclaim(str) {
+  return str + "!"
+}
+
+function callWithArg(callback, arg) {
+  ____________
+}
+
+callWithArg(exclaim, 'hello')
+// returns 'hello!'
+</code></pre>
+
+
+You are given a function called <code>forEachElem</code>:
+
+
+<pre><code class="js language-js">function forEachElem(arr, callback){
+  var newArr = []
+  for (var i = 0; i &lt; arr.length; i++){
+    callback(arr[i])
+  }
+}
+</code></pre>
+
+<p>Complete the following code:</p>
+
+<pre><code class="js language-js">arr = [3, 4, 5]
+forEachElem(arr,_________________
+_______________________________
+_)
+// will log:
+// 'the number is: 3'
+// 'the number is: 4'
+// 'the number is: 5'
+</code></pre>
+
+
+Complete the function <code>createTask</code>
+
+
+<pre><code class="js language-js">function createTask(title, completed){
+
+
+
+
+
+
+}
+
+createTask('buy milk', false)
+// will return {title: 'buy milk', completed: false }
+createTask('walk dog', true)
+// will return {title: 'walk dog', completed: true }
+</code></pre>
+
+
+Bonus: Complete the function logAllTasks:
+
+
+<pre><code class="js language-js">forEachElem(arr, callback){
+  for (var i = 0; i &lt; arr.length; i++){
+    callback(arr[i])
+  }
+}
+
+var taskArr = [
+  {title: 'buy milk', completed: false}
+  {title: 'walk dog', completed: true}
+]
+
+logAllTasks(){
+  forEachElem(taskArr, ___________
+  ________________________________
+  ______)
+}
+
+logAllTasks(taskArr)
+// will log:
+// buy milk. Completed: false
+// walk dog. Completed: true
+</code></pre>
