@@ -12,7 +12,7 @@ function sumTimesTwo(num1, num2){
 
 ```javascript
 function product(num1, num2){
-  if (typeof num1 !== 'number' || typeof num2 !== 'number){
+  if (typeof num1 !== 'number' || typeof num2 !== 'number'){
     return 'invalid input'
   } else {
     return num1 * num2
