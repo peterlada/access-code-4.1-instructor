@@ -1,87 +1,148 @@
-# Final Assessment - Another Draft
+# Final Assessment
 
-1. Write a function `product` that takes two string as arguments. The function will attempt to convert the strings to numbers, and return the product of the two numbers. If the convertion returns NaN for either string, the function should return a string: `'please insert two numbers'`.
+1. Write a function `sumTimesTwo` that takes two numbers as arguments and returns the sum of these numbers multiplied by `2`.
 
-```javascript
-product(1, 2) // returns 2
-product('dog', 'hello') // returns 'please insert two numbers'
-product('cat', 3) // returns 'please insert two numbers'
+2. Write a function `product` that takes two numbers as arguments and returns their product. If either of the arguments is not of type number, the function should return `invalid input`
+
+```js
+product(1, 2)
+// returns 2
+product(3, 'dog')
+// returns 'invalid input'
 ```
 
-2. Write a function called `arrContains` that takes two arguments: an array, and an value. The function should return `true` if the array contains the given value, and `false` otherwise. You may not use any built-in array method - make a loop to check every element of the array.
+3. Write a function `capEvenLowOdd` that takes a string as input. If the string has an even number of letters the function will return the string in all uppercase letters. If the string has an odd number of letters the function will return the string in all lowercase letters.
+
+```js
+capEvenLowOdd('DOG')
+// returns 'dog'
+capEvenLowOdd('woof')
+// returns 'WOOF'
+```
+
+4. The `Math.pow` function takes two numbers as arguments, and returns the first to the power of the second. For example,
+
+```js
+Math.pow(3, 2)
+// returns 9
+```
+
+Create a function called `cube` that takes a number as argumemt and uses the `Math.pow` function to return that number to the power of `3`.
+
+```js
+cube(3)
+// returns 27
+```
+
+5. Write a function `updateCounter` that takes as arguments a number `counter` and a string `action`. If the string's value is `'INC'` the function will return the  value of the counter plus 1. If the string's value is `'DEC'`, the function will return the value of the counter minus 1. If the string's value is neither of these, the function will return `0`.
+
+```js
+updateCounter(1, 'INC')
+// will return 2
+updateCounter(4, 'DEC')
+// will return 3
+updateCounter(10, 'hello')
+// will return 0
+```
+
+6. Write a function called `arrContains` that takes two arguments: an array, and a value to search for within that array. The function will return `true` if the element is in the array, and `false` otherwise. You may not use any built-in array methods.
 
 Examples:
 
-```javascript
-arrContains([1,2,3,4], 2);     // returns true
-arrContains([1,2,3,4], 5);     // returns false
-arrContains(['cat', 'giraffe', 'wolf'], 'dog'); // returns false
+```js
+arrContains([1,2,3,4], 2)
+// returns true
+arrContains([1,2,3,4], 'dog')
+// returns false
 ```
 
-3. You are given a function called `mapArr` that takes as arguments an array and a callback function. `mapArr` applies the callback on each element of the given array, and returns these values in a new array.
-For example:
+7. Write a function `replaceSpacesWithCommas` that takes a string as an argument, and returns the string with all the spaces replaces by commas.
 
 ```js
-function mapArr(arr, callback){
+replaceSpacesWithCommas('hello there stranger')
+// returns ['hello,there,stranger']
+```
+
+8. Fill in the blank:
+
+```js
+function exclaim(str) {
+  return str + "!"
+}
+
+function callFunc(arg, callback) {
+  ____________
+}
+
+apply("hello", exclaim)
+// returns 'hello!'
+```
+
+9. You are given a function called `forEachElem`:
+
+```js
+function forEachElem(arr, callback){
   var newArr = []
   for (var i = 0; i < arr.length; i++){
-    newArr.push(callback(arr[i]))
+    callback(arr[i])
   }
-  return newArr
 }
 ```
 
-Complete the following code using `mapArr`:
+Complete the following code using `forEachElem`:
 
 ```js
-arr1 = [3, 4, 5]
-arr2 = mapArr(_________________
+arr = [3, 4, 5]
+forEachElem(arr,_________________
 _______________________________
 _)
-console.log(arr2)
 // will log:
-// ['the number is: 3', 'the number is: 4', 'the number is: 5']
+// 'the number is: 3'
+// 'the number is: 4'
+// 'the number is: 5'
 ```
 
-4. Write a function `replaceWords` that takes three strings as arguments: `sentence`, `word` and `newWord`. The function will return a new string that is identical to `sentence`, except that all occurences of `word` are replaced by `newWord`. You may use the built-in string method `split` and the built-in array method `join`. You may not use any other built-in methods.
-
-Examples:
+10. Complete the function `createTask`
 
 ```js
-var sentence = 'I have two dogs and three cats'
-replaceWords(sentence, 'dogs', 'giraffes')
-// will return 'I have two giraffes and three cats'
-replaceWords(sentence, 'cats', 'geese')
-// will return 'I have two dogs and three geese'
+function createTask(title, completed){
+
+
+
+
+
+
+}
+
+createTask('buy milk', false)
+// will return {title: 'buy milk', completed: false }
+createTask('walk dog', true)
+// will return {title: 'walk dog', completed: true }
+
 ```
 
-5. You are given the following code:
+11. Bonus: Complete the function logAllTasks:
 
 ```js
-function createTask(description, completed){
-  var task = {
-    description: description,
-    completed: completed
+forEachElem(arr, callback){
+  for (var i = 0; i < arr.length; i++){
+    callback(arr[i])
   }
-  return task
-}
-```
-
-Complete the function `toggleCompleted`:
-
-```js
-function toggleCompleted(task){
-  var task = createTask(______________)
-  return task
 }
 
-var buyMilk = createTask('buy milk', false)
-console.log(buyMilk)
-// Will log: { description: 'buy milk', completed: false }
-console.log(toggleCompleted(buyMilk))
-// Will log: { description: 'buy milk', completed: true }
+var taskArr = [
+  {title: 'buy milk', completed: false}
+  {title: 'walk dog', completed: true}
+]
 
-var walkDog = createTask('walk dog', true)
-console.log(toggleCompleted(walkDog))
-// Will log: { description: 'walk dog', completed: false }
+logAllTasks(){
+  forEachElem(taskArr, ___________
+  ________________________________
+  ______)
+}
+
+logAllTasks(taskArr)
+// will log:
+// buy milk. Completed: false
+// walk dog. Completed: true
 ```
