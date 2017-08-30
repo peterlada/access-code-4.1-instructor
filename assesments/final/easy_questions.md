@@ -189,7 +189,7 @@ let person = {
 }
 console.log( person.firstName );
 ```
-	1. `Kim`
+	1. `Erika`
 	2. `undefined`
 	3. `Juan Ponce de Leon`
 2. What is the output of the following code?
