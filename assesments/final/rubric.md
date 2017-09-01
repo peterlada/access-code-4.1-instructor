@@ -96,5 +96,5 @@ for the sake of completeness.
 39. 4 points
   - 1 correct function syntax
   - 1 correct use of .split(' ')
-  - 1 use of return statement
+  - 1 use of `Number` to convert strings to numbers
   - 1 complete answer

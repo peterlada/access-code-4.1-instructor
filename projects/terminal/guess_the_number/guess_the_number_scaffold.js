@@ -30,15 +30,13 @@ function getRandomNumber (min, max) {
 /**
  * @function Game
  * @param  {Number} number {the number to guess}
- * @param  {Number} triesLeft {number of attempts }
  * @param  {Boolean} win
  * @param  {String} message
- * @return {Game} a Game object
+ * @return {Object} a game object
  */
-function Game (number, triesLeft, gameOver, message) {
+function createGame (number, gameOver, message) {
   var game = {
     number: number,
-    triesLeft: triesLeft,
     gameOver: gameOver,
     message: message
   }
@@ -53,7 +51,6 @@ function Game (number, triesLeft, gameOver, message) {
  */
 function updateGame (game, guess) {
   var number = game.number
-  var triesLeft = game.triesLeft - 1
   var message = ''
   var gameOver
 
@@ -68,7 +65,7 @@ function updateGame (game, guess) {
     message = 'Aim lower'
   }
   
-  var updatedGame = Game(number, triesLeft, gameOver, message)
+  var updatedGame = createGame(number, gameOver, message)
   return updatedGame
 }
 
@@ -81,25 +78,8 @@ rl.on('line', function (input) {
   
   game = updateGame(game, guess)
   
-  if (game.gameOver){
-    render (game, '')
-    process.exit()
-  } else {
-    render(game, 'guess a number')
-  }
-});
-
-/**
- * Logs the game message and a prompt
- * @function
- * @param  {Game} game   
- * @param  {String} prompt 
- */
-function render(game, prompt){
-  clear()
   console.log(game.message)
-  console.log(prompt)
-}
+});
 
 
 /**
@@ -109,12 +89,12 @@ function render(game, prompt){
  */
 function startGame(){
   var gameNumber = getRandomNumber(1, 10)
-  var tries = 10
   var gameOver = false
-  var message = 'Guessing Number Game'
-  game = Game(gameNumber, tries, gameOver, message)
+  var message = ''
+  game = createGame(gameNumber, gameOver, message)
 
-  render(game, 'guess a number')
+  clear()
+  console.log('Guessing Number Game')
 }
 
 var game
