@@ -31,26 +31,10 @@ function calcResult(num1, num2, operation){
       return num1 / num2
     }
   } else {
-    return 0
+    return 'invalid operation'
   }
 }
 
-/**
- * @function arrIncludes
- * @param  {array} arr   {the array}
- * @param  {any} value {the value}
- * @return {boolean} {true if value is in the array, false otherwise}
- */
-function arrIncludes(arr, value){
-  for (var i = 0; i < arr.length; i++){
-    if (arr[i] === value){
-      return true
-    }
-  }
-  return false
-}
-
-var operations = ['+', '-', '*', '/']
 
 rl.on('line', function (input) {
   clear()
@@ -59,9 +43,7 @@ rl.on('line', function (input) {
   var num1 = Number(arr[1])
   var num2 = Number(arr[2])
   
-  if (!arrIncludes(operations, operation)){
-    message = 'invalid operation'
-  } else if (isNaN(num1) || isNaN(num2)){
+  if (isNaN(num1) || isNaN(num2)){
     message = 'you must enter two numbers'
   } else {
     message = calcResult(num1, num2, operation)
