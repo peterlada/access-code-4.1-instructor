@@ -36,7 +36,7 @@ function calcResult(num1, num2, operation){
 }
 
 
-rl.on('line', function (input) {
+rl.on('line', function (input /* :str */) {
   clear()
   var arr = input.split(' ')
   var operation = arr[0]
