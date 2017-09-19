@@ -19,9 +19,10 @@ class Unit:
 
     def extract_plans(self):
         print('Processing lessons for unit %s' % self.unit_name)
-        for file_lesson in os.listdir(self.folder_source):
-            if file_lesson.endswith('.md') and os.path.isfile(os.path.join(self.folder_source, file_lesson)):
-                self.extract_a_plan(file_lesson)
+        for lesson_folder in os.listdir(self.folder_source):
+            if (os.path.isdir(os.path.join(self.folder_source, lesson_folder))
+                and os.path.isfile(os.path.join(self.folder_source, lesson_folder, '%s.md' % lesson_folder))):
+                self.extract_a_plan(lesson_folder)
 
     def extract_a_plan(self, file_lesson):
         print('  Lesson %s' % file_lesson)
