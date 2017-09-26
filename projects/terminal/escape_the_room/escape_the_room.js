@@ -32,6 +32,7 @@ function findElem(arr, callback) {
 
 
 /**
+ * RoomObject
  * @constructor
  * @param  {string} name
  * @param  {string} description
@@ -81,7 +82,7 @@ function RoomObject(name, description, items, neededItems) {
 
 
 /**
- * Room constructor
+ * Room
  * @constructor
  * @param  {RoomObject[]} objects
  */
