@@ -1,17 +1,18 @@
+'use strict';
 /*
  *   Boilerplate
  */
-'use strict';
 
-var readline = require('readline')
+
+var readline = require('readline');
 
 var rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
-})
+});
 
 function clear() {
-    process.stdout.write('\u001B[2J\u001B[0;0f')
+    process.stdout.write('\u001B[2J\u001B[0;0f');
 }
 
 // End of boilerplate
@@ -25,7 +26,7 @@ function clear() {
 function findElem(arr, callback) {
     for (var i = 0; i < arr.length; i++) {
         if (callback(arr[i])) {
-            return arr[i]
+            return arr[i];
         }
     }
 }
@@ -65,7 +66,7 @@ function RoomObject(name, description, items, neededItems, test) {
         } else {
             return false;
         }
-    }
+    };
 
     /**
      * @function {getItems}
@@ -250,10 +251,10 @@ function view(message) {
     message = message || ""
     var room = player.currentRoom
     var title =
-        "--Escape the room-- \n"
-        + "1. examine [object] \n"
-        + "2. use [item] [object] \n"
-        + "3. enter [object] [code] \n";
+        "--Escape the room-- \n" + 
+        "1. examine [object] \n" + 
+        "2. use [item] [object] \n" + 
+        "3. enter [object] [code] \n";
 
     var objects =
         "--You See-- \n" + getObjectNames(room.objects) + "\n";
