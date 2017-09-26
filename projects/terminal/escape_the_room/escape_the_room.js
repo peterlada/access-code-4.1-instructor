@@ -20,7 +20,7 @@ function clear() {
  * @function findElem
  * @param  {any[]} arr
  * @param  {function} callback
- * @return {any} {the first element in the array to satisfy the callback}
+ * @return {any | void} {the first element in the array to satisfy the callback}
  */
 function findElem(arr, callback) {
     for (var i = 0; i < arr.length; i++) {
@@ -38,12 +38,34 @@ function findElem(arr, callback) {
  * @param  {string} description
  * @param  {string[]} items  
  * @param  {string[]} neededItems
+ * @param  {function} [test]
  */
-function RoomObject(name, description, items, neededItems) {
+function RoomObject(name, description, items, neededItems, test) {
     this.name = name;
     this.description = description;
     this.items = items;
     this.neededItems = neededItems;
+    this.locked = test ? true : false;
+    this.test = test;
+
+    /**
+     * @function {unlock}
+     * @param  {string} code
+     * @return {boolean}
+     */
+    this.unlock = function (code) {
+        if (!this.test) {
+            return false;
+        }
+        
+        var success = this.test(code);
+        if (success) {
+            this.locked = false;
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     /**
      * @function {getItems}
@@ -106,10 +128,10 @@ function Room(objects) {
 /**
  * Player
  * @constructor
- * @param  {string[]} items {description}
- * @param  {Room} room  {description}
+ * @param  {string[]} items 
+ * @param  {Room} room  
  */
-function Player(items, room) {
+function Player(room, items) {
     this.items = items || [];
     this.currentRoom = room
 
@@ -144,20 +166,39 @@ function Player(items, room) {
 
         if (object === undefined) {
             return "object " + objectName + " not found in room"
-        } else {
-            if (object.neededItems.length !== 0) {
-                return object.description
-            } else if (object.items.length > 0) {
-                var foundItems = object.getItems()
-                this.addItems(foundItems)
+        } else if (object.neededItems.length !== 0 || object.locked) {
+            return object.description
+        } else if (object.items.length > 0) {
+            var foundItems = object.getItems()
+            this.addItems(foundItems)
+            return "found " + foundItems.join(', ');
 
-                return "found " + foundItems.join(', ');
+        } else if (object.name === 'Door') {
+            return "You're Free!"
+        } else {
+            return "Didn't find anything in " + objectName
+        }
+    }
+
+    /**
+     * @function {unlockObject}
+     * @param  {string} objectName 
+     * @param  {string} code       
+     * @return {string} 
+     */
+    this.unlockObject =  function(objectName, code) {
+        var object = this.currentRoom.getObject(objectName);
+
+        if (object === undefined) {
+            return "object " + objectName + " not found in room";
+        } else if (!object.locked) { 
+            return  objectName + " is not locked with a code";
+        } else {
+            var success = object.unlock(code);
+            if (success) {
+                return "unlocked " + objectName
             } else {
-                if (object.name === 'Door') {
-                    return "You're Free!"
-                } else {
-                    return "Didn't find anything in " + objectName
-                }
+                return "failed to unlock " + objectName
             }
         }
     }
@@ -211,17 +252,17 @@ function view(message) {
     var title =
         "--Escape the room-- \n"
         + "1. examine [object] \n"
-        + "2. use [item] [object] \n";
-
+        + "2. use [item] [object] \n"
+        + "3. enter [object] [code] \n";
 
     var objects =
-        "--You See-- \n" + getObjectNames(room.objects) + "\n"
+        "--You See-- \n" + getObjectNames(room.objects) + "\n";
 
     var items =
-        "--Your Items-- \n" + player.items.join("\n") + "\n"
+        "--Your Items-- \n" + player.items.join("\n") + "\n";
 
     var input =
-        "--Your Input--"
+        "--Your Input--";
 
     return title + message + objects + items + input;
 }
@@ -243,6 +284,11 @@ rl.on('line', function (input) {
         var objectName = words[2].toLowerCase();
         message += player.useItem(itemName, objectName)
 
+    }  else if (words[0] === "enter" && words.length === 3) {
+        var objectName = words[1].toLowerCase();
+        var code = words[2];
+        message += player.unlockObject(objectName, code);
+
     } else {
         message += "invalid command"
     }
@@ -251,15 +297,20 @@ rl.on('line', function (input) {
     console.log(view(message))
 });
 
+function digitalLockTest(code){
+    return code === "10"
+}
 
 var room01Objects = [
     new RoomObject("Door", "You need a key", [], ["key"]),
     new RoomObject("Cellar", "It's dark in there", ["key"], ["flashlight"]),
-    new RoomObject("Drawers", "", ["flashlight"], [])
+    new RoomObject("Drawer", "there's a lock", ["flashlight"], ["drawer-key"]),
+    new RoomObject("Bookshelf", "some old books", ["digital lock hint: 2 in binary"], []),
+    new RoomObject("Digital-Lock", "enter a password", ["drawer-key"], [], digitalLockTest)
 ]
 
 var room01 = new Room(room01Objects)
-var player = new Player(["watch"], room01)
+var player = new Player(room01, ["watch"])
 
 clear()
 console.log(view())
