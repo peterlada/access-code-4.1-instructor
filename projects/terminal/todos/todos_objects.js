@@ -16,22 +16,27 @@ function forEachEle(arr, callback){
   }
 }
 
-var id = 0;
+function arrIncludes(arr, ele){
+  return arr.indexOf(ele) !== -1;
+}
 
+var visibilityOptions = ["all", "active", "completed"]
+
+/**
+ * @typedef {Object} Task
+ * @property {string} description
+ * @property {boolean} completed
+ * @property {function} toggle
+ */
 
 /**
  * @function createTask
  * @param  {string} description 
  * @param  {boolean} completed 
- * @return {type} {description}
+ * @return {Task}
  */
 function createTask(description, completed){
-  var taskId = id
-  // incrementing the global `id` variable
-  id += 1
-
   return {
-    id: taskId,
     description: description,
     completed: completed,
     toggle:   function() {
@@ -43,6 +48,7 @@ function createTask(description, completed){
 
 var taskList = {
   tasks: [],
+  show: 'all',
   addTask: function(description){
     var newTask = createTask(description, false)
     this.tasks.push(newTask)
@@ -54,19 +60,48 @@ var taskList = {
       this.tasks[id].toggle()
     }
   },
-  logTasks: function(id){
-    forEachEle(this.tasks, function(task){
-      console.log(`${task.id}. ${task.description}. Completed: ${task.completed}`)
+  logActive: function(){
+    forEachEle(this.tasks, function(task, i){
+      if (!task.completed){
+        console.log(`${i}. ${task.description}. Completed: ${task.completed}`)
+      }
     })
+  },
+  logCompleted: function(){
+    forEachEle(this.tasks, function(task, i){
+      if (task.completed){
+        console.log(`${i}. ${task.description}. Completed: ${task.completed}`)
+      }
+    })
+  },
+  logAll: function(){ 
+    forEachEle(this.tasks, function(task, i){
+        console.log(`${i}. ${task.description}. Completed: ${task.completed}`)
+    })
+  },
+  logTasks: function(){
+    if (this.show === 'completed'){
+      this.logCompleted();
+    } else if (this.show === 'active'){
+      this.logActive();
+    } else {
+      this.logAll();
+    }
   }
 } 
 
 
 function logInstructions(){
-  console.log('\nTo add task: add [description]')
-  console.log('To toggle completed status: toggle [id]')
+  console.log('\nAdd task: add [description]')
+  console.log('Toggle completed status: toggle [id]')
+  console.log('show all / active / completed')
 }
 
+/**
+ * @function doAction
+ * @param  {string} action
+ * @param  {string} input 
+ */
 function doAction(action, input){
   if (action === 'add'){
     var description = input
@@ -74,6 +109,8 @@ function doAction(action, input){
   } else if (action === 'toggle'){
     var id = Number(input)
     taskList.toggleTask(id)
+  } else if (action === 'show' && arrIncludes(visibilityOptions, input)){
+    taskList.show = input      
   }
 }
 

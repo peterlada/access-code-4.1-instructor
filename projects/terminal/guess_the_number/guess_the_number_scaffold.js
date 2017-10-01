@@ -80,7 +80,7 @@ rl.on('line', function (input) {
   
   console.log(game.message)
 });
-
+  
 
 /**
  * Called when the user starts the game. Sets up the game object.
