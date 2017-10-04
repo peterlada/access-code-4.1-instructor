@@ -69,6 +69,7 @@ function calcResult(operation, numbers){
     }
 }
   
+
 rl.on('line', function (input) {
     clear()
     var arr = input.split(' ')
