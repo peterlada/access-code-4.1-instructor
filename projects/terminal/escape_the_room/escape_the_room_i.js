@@ -17,6 +17,8 @@ function clear() {
 
 // End of boilerplate
 
+var ESCAPE_MESSAGE = 'You escaped the room!'
+
 /**
  * @function findElem
  * @param  {any[]} arr
@@ -102,7 +104,7 @@ RoomObject.prototype.useItem = function(item) {
 }
 
 /**
- * @function examine
+ * @function interact
  * @return {Result}
  */
 RoomObject.prototype.interact = function (verb) {
@@ -112,8 +114,10 @@ RoomObject.prototype.interact = function (verb) {
         return new Result(this.description)
     } else if (this.items.length > 0) {
         return new Result("You " + verb + " the " + this.name, this.getItems()) 
+    } else if (this.name === "Door") {
+        return new Result(ESCAPE_MESSAGE)
     } else {
-        return new Result("didn't find anything useful") 
+        return new Result("didn't find anything useful")         
     }
 }
 
@@ -122,8 +126,9 @@ RoomObject.prototype.interact = function (verb) {
  * @constructor
  * @param  {RoomObject[]} objects
  */
-function Room(objects) {
+function Room(objects, exit) {
     this.objects = objects;
+    this.exit = exit;
 }
 
 /**
@@ -211,6 +216,20 @@ Player.prototype.useItem = function (itemName, objectName) {
     }
 }
 
+function Game() {
+    this.currentRoomIndex = 0;
+    this.rooms = rooms;
+}
+
+Game.prototype.getCurrentRoom = function(){
+    return this.rooms[this.currentRoomIndex]
+}
+
+Game.prototype.getNextRoom = function(){
+    this.currentRoomIndex++;
+    return this.rooms[this.currentRoomIndex]
+}
+
 /**
  * @function getObjectNames
  * @param  {RoomObject[]} objects
@@ -254,6 +273,9 @@ function parseInput(words){
         var verb = words[0].toLowerCase()
         var objectName = words[1].toLowerCase();
         var message = player.interactWithObject(verb, objectName)
+        if (message === ESCAPE_MESSAGE){
+            player.currentRoom = game.getNextRoom();
+        }
         return message
     } else if (words[0] === "use" && words.length === 3) {
         var itemName = words[1].toLowerCase();
@@ -284,15 +306,25 @@ rl.on('line', function (input) {
 
 
 
-var room01Objects = [
+var firstRoomObjects = [
     new RoomObject("Door", "You need a key", [], ["key"], ["open"]),
     new RoomObject("Cellar", "It's dark in there", ["key"], ["flashlight"], ["examine"]),
     new RoomObject("Drawer", "", ["flashlight"], [], ["open"]),
     new RoomObject("Bookshelf", "some old books", [], ["examine"]),
 ]
 
-var room01 = new Room(room01Objects)
-var player = new Player(room01)
+var secondRoomObjects = [
+    new RoomObject("Door", "You need a key", [], ["key"], ["open"]),
+    new RoomObject("table", "nothing", [], [], ["examine"]),
+]
+
+var rooms = [
+    new Room(firstRoomObjects),
+    new Room(secondRoomObjects)
+]
+
+var game = new Game(rooms)
+var player = new Player(game.getCurrentRoom())
 
 clear()
 console.log(view())
