@@ -53,12 +53,12 @@ function Result(description, items){
  * @param  {string[]} items  
  * @param  {string[]} neededItems
  */
-function RoomObject(name, description, items, neededItems, verbs) {
+function RoomObject(name, description, items, neededItems, actions) {
     this.name = name;
     this.description = description;
     this.items = items;
     this.neededItems = neededItems;
-    this.verbs = verbs;
+    this.actions = actions;
 }
 
 
@@ -99,21 +99,37 @@ RoomObject.prototype.useItem = function(item) {
         return new Result("Could not use " + item + " on " + this.name);
     } else {
         this.removeNeededItems();
-        return new Result("Used " + item + " on " + this.name);
+        return new Result(" Used " + item + " -> " + this.name);
     }
+}
+
+/**
+ * @function hasItems
+ * @return {boolean}
+ */
+RoomObject.prototype.hasItems = function(){
+    return this.items.length !== 0;
+}
+
+/**
+ * @function hasItems
+ * @return {boolean}
+ */
+RoomObject.prototype.needsItems = function(){
+    return this.neededItems.length !== 0;
 }
 
 /**
  * @function interact
  * @return {Result}
  */
-RoomObject.prototype.interact = function (verb) {
-    if (this.verbs.indexOf(verb) === -1){
-        return new Result("cannot " + verb + " " + this.name)
-    } else if (this.neededItems.length !== 0) {
+RoomObject.prototype.interact = function (action) {
+    if (this.actions.indexOf(action) === -1){
+        return new Result("cannot " + action + " " + this.name)
+    } else if (this.needsItems()) {
         return new Result(this.description)
-    } else if (this.items.length > 0) {
-        return new Result("You " + verb + " the " + this.name, this.getItems()) 
+    } else if (this.hasItems()) {
+        return new Result("You " + action + " the " + this.name, this.getItems()) 
     } else if (this.name === "Door") {
         return new Result(ESCAPE_MESSAGE)
     } else {
@@ -181,13 +197,13 @@ Player.prototype.addItems = function (items) {
  * @param  {string} objectName
  * @return {string}
  */
-Player.prototype.interactWithObject = function (verb, objectName) {
+Player.prototype.interactWithObject = function (objectName, action) {
     var object = this.currentRoom.getObject(objectName)
 
     if (object === undefined) {
         return objectName + " not found in room"
     } else {
-        var result = object.interact(verb);
+        var result = object.interact(action);
         if (result.items){
             this.addItems(result.items)
             return result.description + "\n" + "found items: " + result.items
@@ -252,7 +268,7 @@ function view(message) {
     var room = player.currentRoom
     var title =
         "--Escape the room-- \n" + 
-        "1. [verb] [object] \n" + 
+        "1. [action] [object] \n" + 
         "2. use [item] [object] \n" 
 
     var objects =
@@ -270,9 +286,9 @@ function view(message) {
 function parseInput(words){
     
     if (words.length === 2){
-        var verb = words[0].toLowerCase()
+        var action = words[0].toLowerCase()
         var objectName = words[1].toLowerCase();
-        var message = player.interactWithObject(verb, objectName)
+        var message = player.interactWithObject(objectName, action)
         if (message === ESCAPE_MESSAGE){
             player.currentRoom = game.getNextRoom();
         }
@@ -310,7 +326,7 @@ var firstRoomObjects = [
     new RoomObject("Door", "You need a key", [], ["key"], ["open"]),
     new RoomObject("Cellar", "It's dark in there", ["key"], ["flashlight"], ["examine"]),
     new RoomObject("Drawer", "", ["flashlight"], [], ["open"]),
-    new RoomObject("Bookshelf", "some old books", [], ["examine"]),
+    new RoomObject("Bookshelf", "some old books", [], [], ["examine"]),
 ]
 
 var secondRoomObjects = [
