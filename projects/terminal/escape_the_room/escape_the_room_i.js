@@ -142,9 +142,8 @@ RoomObject.prototype.interact = function (action) {
  * @constructor
  * @param  {RoomObject[]} objects
  */
-function Room(objects, exit) {
+function Room(objects) {
     this.objects = objects;
-    this.exit = exit;
 }
 
 /**
@@ -232,7 +231,7 @@ Player.prototype.useItem = function (itemName, objectName) {
     }
 }
 
-function Game() {
+function Game(rooms) {
     this.currentRoomIndex = 0;
     this.rooms = rooms;
 }
