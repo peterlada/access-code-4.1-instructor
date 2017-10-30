@@ -2,6 +2,14 @@
 
 ## Rubric for grading Final Assessment
 
+Peter:
+
+* +0.1 for style guide perfect formatting
+* -0.1 for missing doctype declaration
+* -0.1 for not naming files as requested
+* 0.0 for ignored extra css
+* -0.1 for misformed html tags
+
 ### Question 7/8 (Table of Named Colors)
 
 #### table.html (this is sort of a gimme)
@@ -12,16 +20,12 @@
   * +1 properly named heading
   * +3 everything in its own cell
 
-Peter:
-* +0.1 for style guide perfect formatting
-* -0.1 for missing doctype declaration
-
 #### table.css
 *(max 5.5 points)*
 
 * +1 centered page, proper background color
 * +1 heading underlined or black border
-* +1 monospace left column
+* +1 monospace left (or right, ambiguous question) column
 * +1 sans-serif heading and description, 28px font
 * +1 table no border, 6px top/bottom padding
 
@@ -43,7 +47,7 @@ Peter:
 * +1 sidebar links turn pink on mouse hover
 * +1 serif heading and sans-serif list (in content section)
 * +1 sidebar list elements do not have bullet points
-* +1 sidebar, content, and image are appropriately positioned
+* +1 left sidebar, right content, and top-right image positions
 
 ### Question 11/12 (Wire Frame Monsters)
 *This question has 16 available points, but the score caps at 10.*
