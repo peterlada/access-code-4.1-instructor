@@ -1,14 +1,6 @@
-# Unit: HTML
+# Unit: HTML, Mid-Term Assessment
 
-## Rubric for grading Final Assessment
-
-Peter:
-
-* +0.1 for style guide perfect formatting
-* -0.1 for missing doctype declaration
-* -0.1 for not naming files as requested
-* 0.0 for ignored extra css
-* -0.1 for misformed html tags
+## Rubric for grading Mid-Unit Assessment
 
 ### Question 7/8 (Table of Named Colors)
 
