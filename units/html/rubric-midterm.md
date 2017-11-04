@@ -5,7 +5,7 @@
 ### Question 7/8 (Table of Named Colors)
 
 #### table.html (this is sort of a gimme)
-*(max 5.5 points)*
+*(max 5.1 points)*
 
 ```
 +0.1 for style guide perfect formatting
@@ -18,7 +18,7 @@
 ```
 
 #### table.css
-*(max 5.5 points)*
+*(max 5.1 points)*
 
 ```
 +0.1 for style guide perfect formatting
@@ -38,7 +38,7 @@
 ### Question 9/10 (My Trail Mix Fan Page)
 
 #### sidebar.html
-*(max 5.5 points)*
+*(max 5.1 points)*
 
 ```
 +0.1 for style guide perfect formatting
@@ -53,7 +53,7 @@
 ```
 
 #### sidebar.css
-*(max 5.5 points)*
+*(max 5.1 points)*
 
 ```
 +0.1 for style guide perfect formatting
