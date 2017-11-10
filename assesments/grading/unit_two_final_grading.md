@@ -36,7 +36,9 @@
     - +1 makes correct rock/paper/scissors request according to button
     - +1 text input is added to api request if necessary
     - +1 the API call returns a JSON object
-  - +3 "user chooses"/"computer chooses"/"result" is correct
+  - +1 User Chooses is correct
+  - +1 Computer Chooses is correct
+  - +1 Result is correct
   - +1 Total Wins is correct
   - +1 Total Losses is correct
   - +1 Total Ties is correct
