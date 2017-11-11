@@ -4,12 +4,14 @@
 
 ## ninja-<name>.HTML _1 point_
 ```
++1 for hitting all three bullet points
++0.25 for perfect formatting
 -0.25 for html linter errors
 ```
 
 ## ninja-<name>.CSS _max 4.25 points_
 ```
-+1 asdf
++1 correct colors
 +1 Neucha font
 +2 individual elements are yellow/red on hover
 +0.25 for perfect formatting
@@ -24,12 +26,15 @@ Notes: _Do not remove points if hovering body does yellow/red_.
 +3 clicking submit adds input as new list item
 +2 clicking submit clears input field
 +3 clicking list item adds text-transform: uppercase
++1 no copypasta code
 +0.25 for perfect formatting
 -0.25 for syntax errors
 ```
 
 ## rps-<name>.HTML _1 point_
 ```
++1 for hitting all bullet points
++0.25 for perfect formatting
 -0.25 for html linter errors
 ```
 
@@ -56,5 +61,5 @@ Notes: _Do not remove points if hovering body does yellow/red_.
 +1 clicking a button Total Losses is correct
 +1 clicking a button Total Ties is correct
 +0.25 for perfect formatting
--0.25 for css linter errors
+-0.25 for syntax errors
 ```
