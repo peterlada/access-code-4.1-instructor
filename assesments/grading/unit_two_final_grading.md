@@ -14,7 +14,7 @@
 
 ### ninja-<name>.JS _10 points_
 - clicking submit:
-  - +1 does not refresh page
+  - +2 does not refresh page
   - +3 adds input as new list item
   - +2 clears input field
 - clicking list item
