@@ -7,7 +7,7 @@
 - Free Point!
 
 ### ninja-<name>.CSS _4 points_
-- +1 asdf
+- +1 black background, white text
 - +1 Neucha font
 - +2 individual elements are yellow/red on hover
   - _I do not remove points if hovering body does yellow/red_.
