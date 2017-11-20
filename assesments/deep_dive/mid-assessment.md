@@ -18,26 +18,6 @@ Make a server that has the routes that correspond to the function names:
 
 For each route, call the function with the request's `word` parameters, and send the returned value as the response.
 
-## Answer 1
-
-```js
-const repeat = (word) => word + word;
-const exclaim = (word) => word + '!';
-const reverse = (word) => word.split('').reverse().join('');
-
-app.get('/repeat/:word/', (req, res) => {
-  res.send(repeat(req.params.word))
-})
-
-app.get('/exclaim/:word', (req, res) => {
-  res.send(exclaim(req.params.word))
-})
-
-app.get('/reverse/:word/', (req, res) => {
-  res.send(reverse(req.params.word))
-})
-```
-
 ### Level 2
 
 Replace the three routes above with a single route:
@@ -48,24 +28,6 @@ Create an object `commands`, and place the three functions into keys with their 
 
 If the requested command does not exist, return a message: `[command name] is not a vaid command`.
 
-### Answer 2
-
-```js
-
-const commands = {
-  repeat:  ... ,
-  exclaim: ... ,
-  reverse: ...
-}
-
-app.get('/:command/:word/', (req, res) => {
-  const { command, word } = req.params;
-  if (!commands[command]) {
-    return res.send(`${command} is not a valid command`);
-  }
-  res.send(commands[command](word))
-})
-```
 
 ### Level 3
 
@@ -86,17 +48,6 @@ Request URL: http://localhost:3000/hello/repeat/excliam
 Response: hello!hello!
 ```
 
-### Answer 3
-
-```js
-app.get('/:word/:cmd1/:cmd2', (req, res) => {
-  const {cmd1, cmd2, word} = req.params;
-  const out1 = commands[cmd1](word);
-  const out2 = commands[cmd2](out1)
-  res.send(out2)
-})
-```
-
 ### Level 4
 
 1. Write a function `testCommands` that takes as argument an array of `cmd` strings. The function will return an array with each `cmd` that is not a property of `commands`.
@@ -105,9 +56,9 @@ e.g:
 
 ```js
 const commands = {
-  repeat: (word) => word + word,
-  exclaim: (word) => word + '!',
-  reverse: (word) => word.split('').reverse().join('')
+  repeat:  ... ,
+  exclaim: ... ,
+  reverse: ...
 }
 
 testCommands(['reverse', 'jump', 'exclaim', 'swim'])
@@ -128,6 +79,58 @@ Response: invalid commands: run
 Request: localhost:3000/hello/do/repeat
 Response: invalid commands: do
 ```
+
+## Answer 1
+
+```js
+const repeat = (word) => word + word;
+const exclaim = (word) => word + '!';
+const reverse = (word) => word.split('').reverse().join('');
+
+app.get('/repeat/:word/', (req, res) => {
+  res.send(repeat(req.params.word))
+})
+
+app.get('/exclaim/:word', (req, res) => {
+  res.send(exclaim(req.params.word))
+})
+
+app.get('/reverse/:word/', (req, res) => {
+  res.send(reverse(req.params.word))
+})
+```
+
+### Answer 2
+
+```js
+
+const commands = {
+  repeat: (word) => word + word,
+  exclaim: (word) => word + '!',
+  reverse: (word) => word.split('').reverse().join('')
+}
+
+app.get('/:command/:word/', (req, res) => {
+  const { command, word } = req.params;
+  if (!commands[command]) {
+    return res.send(`${command} is not a valid command`);
+  }
+  res.send(commands[command](word))
+})
+```
+
+
+### Answer 3
+
+```js
+app.get('/:word/:cmd1/:cmd2', (req, res) => {
+  const {cmd1, cmd2, word} = req.params;
+  const out1 = commands[cmd1](word);
+  const out2 = commands[cmd2](out1)
+  res.send(out2)
+})
+```
+
 
 ### Answer 4
 
