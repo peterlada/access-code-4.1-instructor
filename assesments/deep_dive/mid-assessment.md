@@ -69,7 +69,7 @@ app.get('/:command/:word/', (req, res) => {
 
 ### Level 3
 
-Create a 3 new routes, that each takes the word first:
+Create a new route, that takes the word first, followed by two commands.
 
 * `/:word/:cmd1/:cmd2` - will take the word, pass it as input to the function specified by `cmd1`,
   and pass the output to the function specified by `cmd2`, which will be then send as a response.
