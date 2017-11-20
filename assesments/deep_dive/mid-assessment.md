@@ -1,8 +1,8 @@
 # Unit 3 Optional Mid-Assessment
 
-## Question
+## Question 1
 
-### Level 1
+### Question 1 - Level 1
 
 Create 3 functions, each of which takes a string `word` as argument:
 
@@ -18,7 +18,7 @@ Make a server that has the routes that correspond to the function names:
 
 For each route, call the function with the request's `word` parameters, and send the returned value as the response.
 
-### Level 2
+### Question 1 - Level 2
 
 Replace the three routes above with a single route:
 
@@ -28,7 +28,7 @@ Create an object `commands`, and place the three functions as values with keys c
 
 If the requested command does not exist, return a message: `[command name] is not a vaid command`.
 
-### Level 3
+### Question 1 - Level 3
 
 Create a new route, that takes the word first, followed by two commands.
 
@@ -46,7 +46,7 @@ Request URL: http://localhost:3000/hello/exclaim/repeat
 Response: hello!hello!
 ```
 
-### Level 4
+### Questions 1 - Level 4
 
 1. Write a function `testCommands` that takes as argument an array of `cmd` strings. The function will return an array with each `cmd` that is not a property of `commands`.
 
@@ -78,7 +78,37 @@ Request: localhost:3000/hello/do/repeat
 Response: invalid commands: do
 ```
 
-## Answer 1
+## Question 2
+
+Save the provided `laureates.json` file in same folder as your express server.
+
+* To import the file: `const laureates = require('./laureates')`
+
+### Question 2 - Level 1
+
+* Create two functions:
+  * `laureatesByFirstName` that takes a first name and returns all the nobel laureates with that first name.
+  * `laureatesByLastName` that takes a first name and returns all the nobel laureates with that first name.
+
+* Create two routes for your server:
+  * `/firstname/:firstName` - responds with all laureates with the given first name.
+  * `/lastname/:lastName` - responds with all laureates with the given last name.
+
+### Questions 2 - Level 2
+
+* Create a function `laureatesByFullName` that takes a first name and returns all the nobel laureates with that first AND last name.
+
+* Create a route `/fullname/:firstName/:lastName` - that responds with all laureates with the given first AND last name.
+
+### Questions 2 Level 3
+
+Create a function `laureateByPrize` that takes a string with the prize category (e.g `'literature'`) and returns all the laureates who won the given prize.
+
+* create a route `/prize/:prize` - that responds with all laureates who won the given prize.
+
+## Answers
+
+## Q1 - L1
 
 ```js
 const repeat = (word) => word + word;
@@ -98,7 +128,7 @@ app.get('/reverse/:word/', (req, res) => {
 })
 ```
 
-### Answer 2
+### Q1 - L2
 
 ```js
 
@@ -117,8 +147,7 @@ app.get('/:command/:word/', (req, res) => {
 })
 ```
 
-
-### Answer 3
+### Q1 - L3
 
 ```js
 app.get('/:word/:cmd1/:cmd2', (req, res) => {
@@ -129,8 +158,7 @@ app.get('/:word/:cmd1/:cmd2', (req, res) => {
 })
 ```
 
-
-### Answer 4
+### Q1 - L4
 
 ```js
 function testCommands(cmdArray) {
@@ -152,5 +180,52 @@ app.get('/:word/:cmd1/:cmd2', (req, res) => {
   const out1 = commands[cmd1](word);
   const out2 = commands[cmd2](out1)
   res.send(out2)
+})
+```
+
+### Q2 - L1
+
+```js
+const laureates = require('./laureates')
+
+const laureatesByFirstName = (firstName) =>
+  laureates.filter(laureate => laureate.firstName === firstName)
+
+const laureatesByLastName = (lastName) =>
+  laureates.filter(laureate => laureate.lastName === lastName)
+
+app.get('/firstname/:firstName', (req, res) => {
+  const {firstName} = req.params;
+  res.send(laureatesByFirstName(firstName))
+})
+
+app.get('/lastname/:lastName', (req, res) => {
+  const {lastName} = req.params;
+  res.send(laureatesByLastName(lastName))
+})
+```
+
+### Q2 - L2
+
+```js
+const laureatesByFullName = (firstName, lastName) =>
+  laureates.filter(laureate =>
+    laureate.firstName === firstName && laureate.lastName === lastName)
+
+app.get('/fullname/:firstName/:lastName', (req, res) => {
+  const {firstName, lastName} = req.params;
+  res.send(laureatesByFullName(firstName, lastName))  
+})
+```
+
+### Q2 - L3
+
+```js
+const laureatesByPrize = (prize) =>
+  laureates.filter(laureate => laureate.prizes.includes(prize))
+
+app.get('/prize/:prize', (req, res) => {
+  const { prize } = req.params;
+  res.send(laureatesByPrize(prize))
 })
 ```
