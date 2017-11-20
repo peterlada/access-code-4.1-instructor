@@ -53,9 +53,9 @@ If the requested command does not exist, return a message: `[command name] is no
 ```js
 
 const commands = {
-  repeat: (word) => word + word,
-  exclaim: (word) => word + '!',
-  reverse: (word) => word.split('').reverse().join('')
+  repeat:  ... ,
+  exclaim: ... ,
+  reverse: ...
 }
 
 app.get('/:command/:word/', (req, res) => {
@@ -72,7 +72,7 @@ app.get('/:command/:word/', (req, res) => {
 Create a new route, that takes the word first, followed by two commands.
 
 * `/:word/:cmd1/:cmd2` - will take the word, pass it as input to the function specified by `cmd1`,
-  and pass the output to the function specified by `cmd2`, which will be then send as a response.
+  and pass the output to the function specified by `cmd2`, which will be then sent as a response.
 
 Examples:
 
