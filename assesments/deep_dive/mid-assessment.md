@@ -24,10 +24,9 @@ Replace the three routes above with a single route:
 
 `/:command/:word`
 
-Create an object `commands`, and place the three functions into keys with their correponding name. Use this object to call the required functions from the route you just created.
+Create an object `commands`, and place the three functions as values with keys corresponding to their name. Use this object to call the required functions from the route you just created.
 
 If the requested command does not exist, return a message: `[command name] is not a vaid command`.
-
 
 ### Level 3
 
@@ -39,12 +38,11 @@ Create a new route, that takes the word first, followed by two commands.
 Examples:
 
 ```text
-Route path: /:word/:repeat/:exclaim
-Request URL: http://localhost:3000/hello/repeat/excliam
+Request URL: http://localhost:3000/hello/repeat/exclaim
 Response: hellohello!
 ---
 Route path: /:word/:exclaim/:repeat
-Request URL: http://localhost:3000/hello/repeat/excliam
+Request URL: http://localhost:3000/hello/exclaim/repeat
 Response: hello!hello!
 ```
 
