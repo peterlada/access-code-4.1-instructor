@@ -87,8 +87,8 @@ Save the provided `laureates.json` file in same folder as your express server.
 ### Question 2 - Level 1
 
 * Create two functions:
-  * `laureatesByFirstName` that takes a first name and returns all the nobel laureates with that first name.
-  * `laureatesByLastName` that takes a first name and returns all the nobel laureates with that first name.
+  * `laureatesByFirstName` that takes a first name as argument, and returns all the nobel laureates with that first name.
+  * `laureatesByLastName` that takes a last name as argument, and returns all the nobel laureates with that last name.
 
 * Create two routes for your server:
   * `/firstname/:firstName` - responds with all laureates with the given first name.
@@ -96,13 +96,13 @@ Save the provided `laureates.json` file in same folder as your express server.
 
 ### Questions 2 - Level 2
 
-* Create a function `laureatesByFullName` that takes a first name and returns all the nobel laureates with that first AND last name.
+* Create a function `laureatesByFullName` that takes a first name and last name as arguments, and returns all nobel laureates with the first AND last name.
 
 * Create a route `/fullname/:firstName/:lastName` - that responds with all laureates with the given first AND last name.
 
 ### Questions 2 Level 3
 
-Create a function `laureateByPrize` that takes a string with the prize category (e.g `'literature'`) and returns all the laureates who won the given prize.
+Create a function `laureateByPrize` that takes a string with the prize category (e.g `'literature'`) and returns all the laureates who won that prize.
 
 * create a route `/prize/:prize` - that responds with all laureates who won the given prize.
 
