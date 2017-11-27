@@ -1,5 +1,8 @@
 # Unit: Deep Dive, Mid-Term Assessment
 
+*Note for graders: treat functions and their routing separately for grading
+purposes. If it doesn't render in the browser at the correct route, it doesn't
+necessarily mean the function itself shouldn't get points. Make sure to check!*
 
 ## Question 1 / Q1 Level 1 (Q1L1.js)
 *(max 5 points)*
@@ -69,8 +72,8 @@
 -0.25 for not naming files as requested
 -1 for syntax error
 
-+1 laureatesByFirstName function, works correctly
-+1 laureatesByLastName function, works correctly
++1 laureatesByFirstName function works correctly
++1 laureatesByLastName function works correctly
 +1 /firstname/:firstName endpoint
 +1 /lastname/:lastName endpoint
 +0.5 no edit distance to correct code
@@ -85,7 +88,7 @@
 -0.25 for not naming files as requested
 -1 for syntax error
 
-+2 laureatesByFullName function, works correctly
++2 laureatesByFullName function works correctly
 +2.5 /fullname/:firstName/:lastName endpoint
 +0.5 for style guide perfect formatting
 ```
@@ -98,7 +101,7 @@
 -0.25 for not naming files as requested
 -1 for syntax error
 
-+2 laureateByPrize function, works correctly
++2 laureateByPrize function works correctly
 +2.5 /prize/:prize  endpoint
 +0.5 for style guide perfect formatting
 ```
