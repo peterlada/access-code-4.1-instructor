@@ -237,7 +237,7 @@
 									"",
 									"",
 									"pm.test(\"Body of response is correct\", function () {",
-									"    pm.response.to.have.body(\"hellohello!\");",
+									"    pm.response.to.have.body(\"hello!hello!!\");",
 									"});"
 								]
 							}
@@ -278,7 +278,7 @@
 									"",
 									"",
 									"pm.test(\"Body of response is correct\", function () {",
-									"    pm.response.to.have.body(\"invalid commands: run\");",
+									"    pm.response.to.have.body(\"hello!hello!\");",
 									"});"
 								]
 							}
@@ -289,15 +289,15 @@
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "localhost:{{port}}/hello/repeat/run",
+							"raw": "localhost:{{port}}/hello/exclaim/repeat",
 							"host": [
 								"localhost"
 							],
 							"port": "{{port}}",
 							"path": [
 								"hello",
-								"repeat",
-								"run"
+								"exclaim",
+								"repeat"
 							]
 						},
 						"description": ""
