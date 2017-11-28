@@ -509,14 +509,14 @@
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "localhost:{{port}}/firstname/albert",
+							"raw": "localhost:{{port}}/firstname/Albert",
 							"host": [
 								"localhost"
 							],
 							"port": "{{port}}",
 							"path": [
 								"firstname",
-								"albert"
+								"Albert"
 							]
 						},
 						"description": ""
@@ -554,14 +554,14 @@
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "localhost:{{port}}/lastname/bragg",
+							"raw": "localhost:{{port}}/lastname/Bragg",
 							"host": [
 								"localhost"
 							],
 							"port": "{{port}}",
 							"path": [
 								"lastname",
-								"bragg"
+								"Bragg"
 							]
 						},
 						"description": ""
@@ -604,15 +604,15 @@
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "localhost:{{port}}/fullname/albert/einstein",
+							"raw": "localhost:{{port}}/fullname/Albert/Einstein",
 							"host": [
 								"localhost"
 							],
 							"port": "{{port}}",
 							"path": [
 								"fullname",
-								"albert",
-								"einstein"
+								"Albert",
+								"Einstein"
 							]
 						},
 						"description": ""
