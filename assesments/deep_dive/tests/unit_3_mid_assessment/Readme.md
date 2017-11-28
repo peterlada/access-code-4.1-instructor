@@ -2,7 +2,7 @@
 
 ## Setting Up
 
-1. Download the `Unit 3 Midterm.postman_collection.json` file.
+1. Download the [`Unit 3 Midterm.postman_collection.json`](https://s3.amazonaws.com/c4q/Unit+3+Midterm.postman_collection.json) file.
 2. In postman, click on `import` and choose the downloaded file.
 3. Create a new environment: Click on `new`, choose `environment`, enter an environment name and click add. Enter a key `port` without a value.
 
