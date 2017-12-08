@@ -2,7 +2,7 @@ const React = require('react');
 const ReactDom = require('react-dom');
 
 const getRandomNumber = (min, max) =>
-  Math.floor(Math.random() * max) + min  
+  Math.floor(Math.random() * (max - min)) + min
 
 class Counter extends React.Component {
   constructor() {
@@ -11,10 +11,10 @@ class Counter extends React.Component {
       count: 0
     }
   }
-  
+
   handleAddClick = () => {
-    this.setState({ 
-      count: this.state.count + 1 
+    this.setState({
+      count: this.state.count + 1
     })
   }
 
@@ -39,7 +39,7 @@ class Counter extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.handleAddClick}> 
+        <button onClick={this.handleAddClick}>
           +
         </button>
         <button onClick={this.handleSubClick}>
