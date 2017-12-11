@@ -1,20 +1,21 @@
 const React = require("react");
 const ReactDom = require("react-dom");
 
-/* 
-Add the following in index.html:
-<style>
-		.small {
-			font-size: 12px;
-		}
-		.medium {
-			font-size: 14px;
-		}
-		.large {
-			font-size: 16px;
-		}
-	</style>
-*/
+const fontSizes = {
+  small: {
+    fontSize: "12px"
+  },
+  medium: {
+    fontSize: "14px"
+  },
+  large: {
+    fontSize: "16px"
+  },
+  humongous: {
+    fontSize: "48px"
+  }
+};
+
 const text = `
   You are old, Father William (Carroll)
   “You are old, father William,” the young man said,
@@ -26,47 +27,47 @@ const text = `
   “I feared it might injure the brain;
   But now that I’m perfectly sure I have none,
   Why, I do it again and again.”
-  `
-
+  `;
 
 class Reader extends React.Component {
   constructor() {
     super();
     this.state = {
-      fontSize: 'small'
+      userFontSize: "small"
     };
-    this.fontSizes = ['small', 'medium', 'large']
+    this.fontSizes = ["small", "medium", "large", "humongous"];
   }
-  
-  handleInputChange = e => {
+
+  handleRadioChange = e => {
     this.setState({
-      fontSize: e.target.value
-    })
+      [e.target.name]: e.target.value
+    });
   };
 
   render() {
-    const fontClass = 
-      this.fontSizes.includes(this.state.fontSize)?
-        this.state.fontSize : 'small'
+    const { userFontSize } = this.state;
 
     return (
       <div>
         <p>
           fontsize: {" "}
-          <input
-            value={this.state.fontSize}
-            onInput={this.handleInputChange}
-          />
+          {this.fontSizes.map(fontSize => (
+            <div>
+              {fontSize}
+              <input
+                type="radio"
+                name="userFontSize"
+                value={fontSize}
+                checked={userFontSize === fontSize}
+                onChange={this.handleRadioChange}
+              />
+            </div>
+          ))}
         </p>
-        <pre className={fontClass}>
-          {this.props.text}
-        </pre>
+        <pre style={fontSizes[userFontSize]}>{this.props.text}</pre>
       </div>
     );
   }
 }
 
-ReactDom.render(
-  <Reader text={text}/>,
-  document.getElementById("root")
-);
+ReactDom.render(<Reader text={text} />, document.getElementById("root"));
