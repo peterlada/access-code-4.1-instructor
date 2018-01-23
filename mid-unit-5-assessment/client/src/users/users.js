@@ -22,11 +22,6 @@ class Users extends React.Component {
   render() {
     return (
       <div className="App">
-        <nav>
-          <Link to='/users'> User List </Link>
-          <Link to='/users/new'> Add New User </Link>
-        </nav>
-
         <Route exact path='/users' render={ this.renderUserList } />
       </div>
     );
