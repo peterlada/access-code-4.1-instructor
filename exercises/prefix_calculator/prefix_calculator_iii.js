@@ -7,7 +7,8 @@ var rl = readline.createInterface({
 })
 
 function clear () {
-  process.stdout.write('\u001B[2J\u001B[0;0f')
+  	process.stdout.cursorTo(0, 0); 
+	process.stdout.clearScreenDown();
 }
 
 /**
